@@ -8,12 +8,14 @@
 
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Responder
 {
     private Random aleatorio;
     private ArrayList<String> opciones;
-    
+    private HashMap<String, String> respuestasAsociadas;
+
     /**
      * Construct a Responder - nothing to do
      */
@@ -26,15 +28,29 @@ public class Responder
         opciones.add(2,"quizás");
         opciones.add(3,"tal vez");
         opciones.add(4,"tíralo");
+        respuestasAsociadas = new HashMap<String, String>();
+        respuestasAsociadas.put("lento","reinicia el equipo" );
+        respuestasAsociadas.put("enciende", "enchúfalo");
+        respuestasAsociadas.put("apaga", "tíralo a la basura");
+        respuestasAsociadas.put("estropeado", "vete a tienda a descambiarlo");
     }
 
     /**
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse()
-    {
-        int indexAleatorio = (int)(aleatorio.nextInt(opciones.size()));
+    /** int indexAleatorio = aleatorio.nextInt(opciones.size());
         return (opciones.get(indexAleatorio));
+    */
+   
+    public String generateResponse(String userInput){
+        int indexAleatorio = aleatorio.nextInt(opciones.size());
+        String respuestaAsociada = opciones.get(indexAleatorio);
+        for(String clave : respuestasAsociadas.keySet()){
+            if(userInput.contains(clave)){
+                respuestaAsociada = respuestasAsociadas.get(clave);
+            }
+        }
+        return respuestaAsociada;
     }
 }
