@@ -44,12 +44,12 @@ public class Responder
     */
    
     public String generateResponse(String userInput){
-        int indexAleatorio = aleatorio.nextInt(opciones.size());
-        String respuestaAsociada = opciones.get(indexAleatorio);
-        for(String clave : respuestasAsociadas.keySet()){
-            if(userInput.contains(clave)){
-                respuestaAsociada = respuestasAsociadas.get(clave);
-            }
+        String respuestaAsociada = "";
+        if(respuestasAsociadas.get(userInput) != null)
+            respuestaAsociada = respuestasAsociadas.get(userInput);
+        else{
+            int indexAleatorio = aleatorio.nextInt(opciones.size());
+            respuestaAsociada = opciones.get(indexAleatorio);
         }
         return respuestaAsociada;
     }
