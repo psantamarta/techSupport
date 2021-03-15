@@ -44,16 +44,17 @@ public class Responder
     public String generateResponse(HashSet<String> conjuntoConsulta){
         String respuestaAsociada = "";
         for(String consulta : conjuntoConsulta){
-        if(respuestasAsociadas.get(consulta) != null){
-            respuestaAsociada = respuestasAsociadas.get(consulta);
+            if(respuestasAsociadas.get(consulta) != null){
+                respuestaAsociada = respuestasAsociadas.get(consulta);
+            }
+
         }
-        else{
+        if(respuestaAsociada == ""){
             int indexAleatorio = aleatorio.nextInt(opciones.size());
             respuestaAsociada = opciones.get(indexAleatorio);
         }
+        return respuestaAsociada;
     }
-    return respuestaAsociada;
-}
 
 }
 
