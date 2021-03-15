@@ -1,3 +1,4 @@
+import java.util.HashSet;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -39,18 +40,21 @@ public class Responder
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    /** int indexAleatorio = aleatorio.nextInt(opciones.size());
-        return (opciones.get(indexAleatorio));
-    */
-   
-    public String generateResponse(String userInput){
+
+    public String generateResponse(HashSet<String> conjuntoConsulta){
         String respuestaAsociada = "";
-        if(respuestasAsociadas.get(userInput) != null)
-            respuestaAsociada = respuestasAsociadas.get(userInput);
+        for(String consulta : conjuntoConsulta){
+        if(respuestasAsociadas.get(consulta) != null){
+            respuestaAsociada = respuestasAsociadas.get(consulta);
+        }
         else{
             int indexAleatorio = aleatorio.nextInt(opciones.size());
             respuestaAsociada = opciones.get(indexAleatorio);
         }
-        return respuestaAsociada;
     }
+    return respuestaAsociada;
 }
+
+}
+
+
